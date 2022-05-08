@@ -25,7 +25,7 @@ body {
 
 h1 {
     width: fit-content;
-    margin: 20px auto;
+    margin: 40px auto;
     background: linear-gradient(to right, red, orange, yellow, green, cyan, blue, violet);
     background-clip: text;
     -webkit-background-clip: text;    
@@ -34,6 +34,11 @@ h1 {
     color: #292929;
     font-size: 42px;
     line-height: 42px;
+
+    @media (max-width: 365px) {
+        width: min-content;
+        text-align: center;        
+    }
 }
 
 p {
@@ -54,7 +59,7 @@ textarea {
 
 .keyboard-background {
     margin: 18px auto;
-    max-width: 610px;
+    max-width: 700px;
     min-height: 250px;
     border: 3px solid #292929;
     border-radius: 7px;
@@ -62,11 +67,65 @@ textarea {
 }
 
 .keyboard {
-    max-width: 604px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 3px;
+    max-width: 700px;
     min-height: 250px;
     padding: 5px;
     border-radius: 6px;
     background-color: rgba(0, 0, 0, 0.05);
     backdrop-filter: blur(10px);
     font-size: 20px;
+    @media (max-width: 525px) {
+        column-gap: 1px;        
+    }
+}
+
+.key {
+    height: 42px;
+    background-color: rgba(31, 31, 31, 0.95);
+    border-radius: 3px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 46px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+        background-color: rgba(31, 31, 31, 0.7);
+    }
+    &:active {
+        background-color: rgba(31, 31, 31, 0.55);transform: scale(0.93);
+    }
+
+    @media (max-width: 700px) {
+        font-size: 12px;
+    }
+    @media (max-width: 525px) {
+        font-size: 7px;
+    }
+}
+
+.key.caps-lock {
+    position: relative;
+}
+
+.key.caps-lock::after {
+    content: '';
+    top: 5px;
+    right: 5px;
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 50%;
+}
+
+.key.caps-lock.active::after {
+    background: rgba(0, 212, 18, 0.8);
+    box-shadow: 0 0 8px rgb(255, 255, 255);
 }
