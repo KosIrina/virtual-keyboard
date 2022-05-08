@@ -23,4 +23,6 @@ export default function createKeys() {
     key.innerHTML = `${keys.enKeys[i].key}`;
     keyboard.append(key);
   }
+
+  keyboard.onmousedown = (event) => { event.preventDefault(); };
 }
