@@ -1,5 +1,5 @@
 export function highlightKeyByKeyboard(event) {
-  if (document.querySelector(`.key[data-key-code=${event.code}]`) !== null) {
+  if (event.code.length > 0 && document.querySelector(`.key[data-key-code=${event.code}]`) !== null) {
     if (event.code === 'CapsLock') {
       document.querySelector(`.key[data-key-code=${event.code}]`).classList.toggle('active-capslock');
     }
@@ -32,7 +32,7 @@ export function removeKeyHighlight(event) {
       setTimeout(() => { document.querySelector(`.key[data-key-code=${event.code}]`).classList.remove('active'); }, 200);
     }
     //
-  } else if (document.querySelector(`.key[data-key-code=${event.code}]`) !== null) {
+  } else if (event.code.length > 0 && document.querySelector(`.key[data-key-code=${event.code}]`) !== null) {
     document.querySelector(`.key[data-key-code=${event.code}]`).classList.remove('active');
   } else if (event.target.dataset.keyCode) {
     document.querySelector(`.key[data-key-code=${event.target.dataset.keyCode}]`).classList.remove('active');
