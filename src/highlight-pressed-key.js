@@ -39,9 +39,9 @@ export function removeKeyHighlight(event) {
   }
 }
 
-export function removeKeyHighlightForNonModifierKeys(event) {
+export function removeKeyHighlightForShiftKeys(event) {
   if (event.target.dataset.keyCode) {
-    if (event.target.dataset.keyCode !== 'ShiftLeft' && event.target.dataset.keyCode !== 'ShiftRight' && event.target.dataset.keyCode !== 'AltLeft' && event.target.dataset.keyCode !== 'AltRight') {
+    if (event.target.dataset.keyCode !== 'ShiftLeft' && event.target.dataset.keyCode !== 'ShiftRight') {
       document.querySelector(`.key[data-key-code=${event.target.dataset.keyCode}]`).classList.remove('active');
     }
   }
