@@ -75,7 +75,7 @@ function pressKeys(event) {
               allKeys[x].innerHTML = `${keys[newLang][index].key}`;
             }
           });
-          description.innerText = `${description.innerText.slice(0, description.innerText.length - 2)}${newLang.substring(0, 2).toLocaleUpperCase()}`;
+          description.innerHTML = `${description.innerHTML.slice(0, description.innerHTML.length - 2)}${newLang.substring(0, 2).toUpperCase()}`;
           arrForLangSwitch = [];
         } else { arrForLangSwitch.push('ControlLeft'); }
         break;
@@ -99,7 +99,7 @@ function pressKeys(event) {
               allKeys[x].innerHTML = `${keys[newLang][index].key}`;
             }
           });
-          description.innerText = `${description.innerText.slice(0, description.innerText.length - 2)}${newLang.substring(0, 2).toLocaleUpperCase()}`;
+          description.innerHTML = `${description.innerHTML.slice(0, description.innerHTML.length - 2)}${newLang.substring(0, 2).toUpperCase()}`;
           arrForLangSwitch = [];
         } else { arrForLangSwitch.push('ControlRight'); }
         break;
@@ -123,7 +123,7 @@ function pressKeys(event) {
               allKeys[x].innerHTML = `${keys[newLang][index].key}`;
             }
           });
-          description.innerText = `${description.innerText.slice(0, description.innerText.length - 2)}${newLang.substring(0, 2).toLocaleUpperCase()}`;
+          description.innerHTML = `${description.innerHTML.slice(0, description.innerHTML.length - 2)}${newLang.substring(0, 2).toUpperCase()}`;
           arrForLangSwitch = [];
         } else { arrForLangSwitch.push('AltLeft'); }
         break;
@@ -147,7 +147,7 @@ function pressKeys(event) {
               allKeys[x].innerHTML = `${keys[newLang][index].key}`;
             }
           });
-          description.innerText = `${description.innerText.slice(0, description.innerText.length - 2)}${newLang.substring(0, 2).toLocaleUpperCase()}`; arrForLangSwitch = [];
+          description.innerHTML = `${description.innerHTML.slice(0, description.innerHTML.length - 2)}${newLang.substring(0, 2).toUpperCase()}`; arrForLangSwitch = [];
         } else { arrForLangSwitch.push('AltRight'); }
         break;
       case 'CapsLock':

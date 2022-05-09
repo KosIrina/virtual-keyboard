@@ -23,7 +23,7 @@ window.addEventListener('beforeunload', setLocalStorage);
 function getLocalStorage() {
   let langFromLocalStorage = JSON.parse(localStorage.getItem('KosIrina: lang'));
   if (langFromLocalStorage === null) { langFromLocalStorage = 'EN'; }
-  document.querySelector('.description').innerText = `${document.querySelector('.description').innerText.slice(0, document.querySelector('.description').innerText.length - 2)}${langFromLocalStorage}`;
+  document.querySelector('.description').innerHTML = `${document.querySelector('.description').innerHTML.slice(0, document.querySelector('.description').innerHTML.length - 2)}${langFromLocalStorage}`;
   createKeys();
 }
 window.addEventListener('load', getLocalStorage);
