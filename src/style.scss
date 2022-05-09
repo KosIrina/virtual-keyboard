@@ -1,0 +1,133 @@
+@font-face {
+    font-family: 'ElMessiri';
+    src: url('./ElMessiri-Regular.woff2') format('woff2'),
+    url('./ElMessiri-Regular.woff') format('woff'),
+    url('./ElMessiri-Regular.ttf') format('ttf');
+    font-weight: 400;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 30px;
+    font-family: ElMessiri;
+}
+
+.container {
+    width: 100%;
+}
+
+h1 {
+    width: fit-content;
+    margin: 40px auto;
+    background: linear-gradient(to right, red, orange, yellow, green, cyan, blue, violet);
+    background-clip: text;
+    -webkit-background-clip: text;    
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0.1px #292929;
+    color: #292929;
+    font-size: 42px;
+    line-height: 42px;
+
+    @media (max-width: 365px) {
+        width: min-content;
+        text-align: center;        
+    }
+}
+
+p {
+    text-align: center;
+    font-size: 18px;
+}
+
+textarea {
+    display: block;
+    width: 70vw;
+    max-width: 580px;
+    height: 150px;
+    margin: 0 auto;
+    padding: 8px;
+    font: inherit;
+    font-size: 20px;
+}
+
+.keyboard-background {
+    margin: 18px auto;
+    max-width: 700px;
+    min-height: 250px;
+    border: 3px solid #292929;
+    border-radius: 7px;
+    background: linear-gradient(to right, red, orange, yellow, green, cyan, blue, violet);
+}
+
+.keyboard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 3px;
+    max-width: 700px;
+    min-height: 250px;
+    padding: 5px;
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(10px);
+    font-size: 20px;
+    @media (max-width: 525px) {
+        column-gap: 1px;        
+    }
+}
+
+.key {
+    height: 42px;
+    background-color: rgba(31, 31, 31, 0.95);
+    border-radius: 3px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 46px;
+    font-size: 1rem;
+    touch-action: none;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+        background-color: rgba(31, 31, 31, 0.7);
+    }
+
+    @media (max-width: 700px) {
+        font-size: 12px;
+    }
+    @media (max-width: 525px) {
+        font-size: 7px;
+    }
+}
+
+.key.active {
+    background-color: rgba(31, 31, 31, 0.55);transform: scale(0.93);
+}
+
+.key.caps-lock {
+    position: relative;
+}
+
+.key.caps-lock::after {
+    content: '';
+    top: 5px;
+    right: 5px;
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 50%;
+}
+
+.key.caps-lock.active-capslock::after {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 8px rgb(255, 255, 255);
+}
