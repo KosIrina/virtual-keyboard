@@ -48,7 +48,12 @@ module.exports = {
       },
       favicon: '../src/favicon.ico',
     }),
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: [
+        '**/*',
+        '!.git',
+      ],
+    }),
     new MiniCssExtractPlugin(),
   ],
   devtool: isDev ? 'source-map' : false,
