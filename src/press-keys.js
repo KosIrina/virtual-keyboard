@@ -36,9 +36,14 @@ function pressKeys(event) {
         textArea.setRangeText('\t', textArea.selectionStart, textArea.selectionEnd, 'end');
         break;
       case 'Backspace':
-        if (textArea.selectionStart === textArea.selectionEnd && textArea.value.length > 0) {
+        if (textArea.selectionStart === textArea.selectionEnd
+            && textArea.selectionStart > 0) {
           textArea.setRangeText('', textArea.selectionStart - 1, textArea.selectionEnd, 'end');
-        } else if (textArea.value.length > 0) { textArea.setRangeText('', textArea.selectionStart, textArea.selectionEnd, 'end'); }
+        } else { textArea.setRangeText('', textArea.selectionStart, textArea.selectionEnd, 'end'); }
+        break;
+
+      case 'Space':
+        textArea.setRangeText(' ', textArea.selectionStart, textArea.selectionEnd, 'end');
         break;
       case 'Delete':
         if (textArea.selectionStart === textArea.selectionEnd) {
