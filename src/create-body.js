@@ -11,7 +11,7 @@ export default function createBody() {
 
   const description = document.createElement('p');
   description.classList.add('description');
-  description.innerHTML = 'This keyboard was created in the Windows operating system<br>To change the language, use the following keyboard shortcut: <i>Alt + Ctrl</i>';
+  description.innerHTML = 'This keyboard was created in the Windows operating system<br>To change the language, use the following keyboard shortcut: <i>Alt + Ctrl</i><br>Current language: EN';
   container.append(description);
 
   const textArea = document.createElement('textarea');
