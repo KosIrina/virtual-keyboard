@@ -6,7 +6,27 @@ import * as highlight from './highlight-pressed-key';
 import { pressKeys, removeShift } from './press-keys';
 
 createBody();
-createKeys();
+
+function setLocalStorage() {
+  const data = JSON.stringify(document.querySelector('.description').innerText.slice(-2));
+
+  if (!localStorage.getItem('KosIrina: lang')) {
+    localStorage.clear();
+    localStorage.setItem('KosIrina: lang', data);
+  } else {
+    localStorage.setItem('KosIrina: lang', data);
+  }
+}
+
+window.addEventListener('beforeunload', setLocalStorage);
+
+function getLocalStorage() {
+  let langFromLocalStorage = JSON.parse(localStorage.getItem('KosIrina: lang'));
+  if (langFromLocalStorage === null) { langFromLocalStorage = 'EN'; }
+  document.querySelector('.description').innerText = `${document.querySelector('.description').innerText.slice(0, document.querySelector('.description').innerText.length - 2)}${langFromLocalStorage}`;
+  createKeys();
+}
+window.addEventListener('load', getLocalStorage);
 
 const keyboard = document.querySelector('.keyboard');
 

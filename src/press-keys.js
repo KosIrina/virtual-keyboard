@@ -6,11 +6,23 @@ let keyCode;
 
 function pressKeys(event) {
   event.preventDefault();
+  const description = document.querySelector('.description');
+  const currentLang = `${description.innerText.slice(-2)}`;
   const textArea = document.querySelector('.textarea');
   const capsLock = document.querySelector('.caps-lock');
   const shiftLeft = document.querySelector('.key[data-key-code=ShiftLeft');
   const shiftRight = document.querySelector('.key[data-key-code=ShiftRight');
   const allKeys = document.querySelectorAll('.key');
+  let lang = '';
+  let newLang = '';
+
+  if (currentLang === 'EN') {
+    lang = 'enKeys';
+    newLang = 'ruKeys';
+  } else if (currentLang === 'RU') {
+    lang = 'ruKeys';
+    newLang = 'enKeys';
+  }
 
   if (event.code) {
     keyCode = event.code;
@@ -40,114 +52,185 @@ function pressKeys(event) {
         break;
       case 'ControlLeft':
         if (arrForLangSwitch.length > 0 && (arrForLangSwitch[arrForLangSwitch.length - 1] === 'AltLeft' || arrForLangSwitch[arrForLangSwitch.length - 1] === 'AltRight')) {
-          console.log('changeLang'); // заменить функцией
+          allKeys.forEach((el, x) => {
+            const index = keys[lang].findIndex((elem, i, arr) => {
+              let y;
+              if (elem.code === el.dataset.keyCode) {
+                y = arr[i];
+              } return y;
+            });
+
+            if (capsLock.classList.contains('active-capslock') && (shiftLeft.classList.contains('active') || shiftRight.classList.contains('active'))) {
+              if (keys[newLang][index].keyShift) { allKeys[x].innerHTML = `${keys[newLang][index].keyShift}`; } else { allKeys[x].innerHTML = `${keys[newLang][index].key}`; }
+            } else if (!capsLock.classList.contains('active-capslock') && (shiftLeft.classList.contains('active') || shiftRight.classList.contains('active'))) {
+              if (keys[newLang][index].keyCapsLock) { allKeys[x].innerHTML = `${keys[newLang][index].keyCapsLock}`; } else if (keys[newLang][index].keyShift) { allKeys[x].innerHTML = `${keys[newLang][index].keyShift}`; } else { allKeys[x].innerHTML = `${keys[newLang][index].key}`; }
+            } else if (capsLock.classList.contains('active-capslock') && (!shiftLeft.classList.contains('active') || !shiftRight.classList.contains('active'))) {
+              if (keys[newLang][index].keyCapsLock) { allKeys[x].innerHTML = `${keys[newLang][index].keyCapsLock}`; } else { allKeys[x].innerHTML = `${keys[newLang][index].key}`; }
+            } else {
+              allKeys[x].innerHTML = `${keys[newLang][index].key}`;
+            }
+          });
+          description.innerText = `${description.innerText.slice(0, description.innerText.length - 2)}${newLang.substring(0, 2).toLocaleUpperCase()}`;
           arrForLangSwitch = [];
         } else { arrForLangSwitch.push('ControlLeft'); }
         break;
       case 'ControlRight':
         if (arrForLangSwitch.length > 0 && (arrForLangSwitch[arrForLangSwitch.length - 1] === 'AltLeft' || arrForLangSwitch[arrForLangSwitch.length - 1] === 'AltRight')) {
-          console.log('changeLang'); // заменить функцией
+          allKeys.forEach((el, x) => {
+            const index = keys[lang].findIndex((elem, i, arr) => {
+              let y;
+              if (elem.code === el.dataset.keyCode) {
+                y = arr[i];
+              } return y;
+            });
+
+            if (capsLock.classList.contains('active-capslock') && (shiftLeft.classList.contains('active') || shiftRight.classList.contains('active'))) {
+              if (keys[newLang][index].keyShift) { allKeys[x].innerHTML = `${keys[newLang][index].keyShift}`; } else { allKeys[x].innerHTML = `${keys[newLang][index].key}`; }
+            } else if (!capsLock.classList.contains('active-capslock') && (shiftLeft.classList.contains('active') || shiftRight.classList.contains('active'))) {
+              if (keys[newLang][index].keyCapsLock) { allKeys[x].innerHTML = `${keys[newLang][index].keyCapsLock}`; } else if (keys[newLang][index].keyShift) { allKeys[x].innerHTML = `${keys[newLang][index].keyShift}`; } else { allKeys[x].innerHTML = `${keys[newLang][index].key}`; }
+            } else if (capsLock.classList.contains('active-capslock') && (!shiftLeft.classList.contains('active') || !shiftRight.classList.contains('active'))) {
+              if (keys[newLang][index].keyCapsLock) { allKeys[x].innerHTML = `${keys[newLang][index].keyCapsLock}`; } else { allKeys[x].innerHTML = `${keys[newLang][index].key}`; }
+            } else {
+              allKeys[x].innerHTML = `${keys[newLang][index].key}`;
+            }
+          });
+          description.innerText = `${description.innerText.slice(0, description.innerText.length - 2)}${newLang.substring(0, 2).toLocaleUpperCase()}`;
           arrForLangSwitch = [];
         } else { arrForLangSwitch.push('ControlRight'); }
         break;
       case 'AltLeft':
         if (arrForLangSwitch.length > 0 && (arrForLangSwitch[arrForLangSwitch.length - 1] === 'ControlLeft' || arrForLangSwitch[arrForLangSwitch.length - 1] === 'ControlRight')) {
-          console.log('changeLang'); // заменить функцией
+          allKeys.forEach((el, x) => {
+            const index = keys[lang].findIndex((elem, i, arr) => {
+              let y;
+              if (elem.code === el.dataset.keyCode) {
+                y = arr[i];
+              } return y;
+            });
+
+            if (capsLock.classList.contains('active-capslock') && (shiftLeft.classList.contains('active') || shiftRight.classList.contains('active'))) {
+              if (keys[newLang][index].keyShift) { allKeys[x].innerHTML = `${keys[newLang][index].keyShift}`; } else { allKeys[x].innerHTML = `${keys[newLang][index].key}`; }
+            } else if (!capsLock.classList.contains('active-capslock') && (shiftLeft.classList.contains('active') || shiftRight.classList.contains('active'))) {
+              if (keys[newLang][index].keyCapsLock) { allKeys[x].innerHTML = `${keys[newLang][index].keyCapsLock}`; } else if (keys[newLang][index].keyShift) { allKeys[x].innerHTML = `${keys[newLang][index].keyShift}`; } else { allKeys[x].innerHTML = `${keys[newLang][index].key}`; }
+            } else if (capsLock.classList.contains('active-capslock') && (!shiftLeft.classList.contains('active') || !shiftRight.classList.contains('active'))) {
+              if (keys[newLang][index].keyCapsLock) { allKeys[x].innerHTML = `${keys[newLang][index].keyCapsLock}`; } else { allKeys[x].innerHTML = `${keys[newLang][index].key}`; }
+            } else {
+              allKeys[x].innerHTML = `${keys[newLang][index].key}`;
+            }
+          });
+          description.innerText = `${description.innerText.slice(0, description.innerText.length - 2)}${newLang.substring(0, 2).toLocaleUpperCase()}`;
           arrForLangSwitch = [];
         } else { arrForLangSwitch.push('AltLeft'); }
         break;
       case 'AltRight':
         if (arrForLangSwitch.length > 0 && (arrForLangSwitch[arrForLangSwitch.length - 1] === 'ControlLeft' || arrForLangSwitch[arrForLangSwitch.length - 1] === 'ControlRight')) {
-          console.log('changeLang'); // заменить функцией
-          arrForLangSwitch = [];
+          allKeys.forEach((el, x) => {
+            const index = keys[lang].findIndex((elem, i, arr) => {
+              let y;
+              if (elem.code === el.dataset.keyCode) {
+                y = arr[i];
+              } return y;
+            });
+
+            if (capsLock.classList.contains('active-capslock') && (shiftLeft.classList.contains('active') || shiftRight.classList.contains('active'))) {
+              if (keys[newLang][index].keyShift) { allKeys[x].innerHTML = `${keys[newLang][index].keyShift}`; } else { allKeys[x].innerHTML = `${keys[newLang][index].key}`; }
+            } else if (!capsLock.classList.contains('active-capslock') && (shiftLeft.classList.contains('active') || shiftRight.classList.contains('active'))) {
+              if (keys[newLang][index].keyCapsLock) { allKeys[x].innerHTML = `${keys[newLang][index].keyCapsLock}`; } else if (keys[newLang][index].keyShift) { allKeys[x].innerHTML = `${keys[newLang][index].keyShift}`; } else { allKeys[x].innerHTML = `${keys[newLang][index].key}`; }
+            } else if (capsLock.classList.contains('active-capslock') && (!shiftLeft.classList.contains('active') || !shiftRight.classList.contains('active'))) {
+              if (keys[newLang][index].keyCapsLock) { allKeys[x].innerHTML = `${keys[newLang][index].keyCapsLock}`; } else { allKeys[x].innerHTML = `${keys[newLang][index].key}`; }
+            } else {
+              allKeys[x].innerHTML = `${keys[newLang][index].key}`;
+            }
+          });
+          description.innerText = `${description.innerText.slice(0, description.innerText.length - 2)}${newLang.substring(0, 2).toLocaleUpperCase()}`; arrForLangSwitch = [];
         } else { arrForLangSwitch.push('AltRight'); }
         break;
       case 'CapsLock':
         if (capsLock.classList.contains('active-capslock') && (shiftLeft.classList.contains('active') || shiftRight.classList.contains('active'))) {
           allKeys.forEach((el, x) => {
-            const index = keys.enKeys.findIndex((elem, i, arr) => {
+            const index = keys[lang].findIndex((elem, i, arr) => {
               let y;
               if (elem.code === el.dataset.keyCode) {
                 y = arr[i];
               } return y;
             });
-            if (keys.enKeys[index].keyShift) { allKeys[x].innerHTML = `${keys.enKeys[index].keyShift}`; } else { allKeys[x].innerHTML = `${keys.enKeys[index].key}`; }
+            if (keys[lang][index].keyShift) { allKeys[x].innerHTML = `${keys[lang][index].keyShift}`; } else { allKeys[x].innerHTML = `${keys[lang][index].key}`; }
           });
         } else if (capsLock.classList.contains('active-capslock')) {
           allKeys.forEach((el, x) => {
-            const index = keys.enKeys.findIndex((elem, i, arr) => {
+            const index = keys[lang].findIndex((elem, i, arr) => {
               let y;
               if (elem.code === el.dataset.keyCode) {
                 y = arr[i];
               } return y;
             });
-            if (keys.enKeys[index].keyCapsLock) { allKeys[x].innerHTML = `${keys.enKeys[index].keyCapsLock}`; } else { allKeys[x].innerHTML = `${keys.enKeys[index].key}`; }
+            if (keys[lang][index].keyCapsLock) { allKeys[x].innerHTML = `${keys[lang][index].keyCapsLock}`; } else { allKeys[x].innerHTML = `${keys[lang][index].key}`; }
           });
         } else if (!capsLock.classList.contains('active-capslock') && (shiftLeft.classList.contains('active') || shiftRight.classList.contains('active'))) {
           allKeys.forEach((el, x) => {
-            const index = keys.enKeys.findIndex((elem, i, arr) => {
+            const index = keys[lang].findIndex((elem, i, arr) => {
               let y;
               if (elem.code === el.dataset.keyCode) {
                 y = arr[i];
               } return y;
             });
-            if (keys.enKeys[index].keyCapsLock) { allKeys[x].innerHTML = `${keys.enKeys[index].keyCapsLock}`; } else if (keys.enKeys[index].keyShift) { allKeys[x].innerHTML = keys.enKeys[index].keyShift.toString(); } else { allKeys[x].innerHTML = `${keys.enKeys[index].key}`; }
+            if (keys[lang][index].keyCapsLock) { allKeys[x].innerHTML = `${keys[lang][index].keyCapsLock}`; } else if (keys[lang][index].keyShift) { allKeys[x].innerHTML = keys[lang][index].keyShift.toString(); } else { allKeys[x].innerHTML = `${keys[lang][index].key}`; }
           });
         } else if (!capsLock.classList.contains('active-capslock')) {
           allKeys.forEach((el, x) => {
-            const index = keys.enKeys.findIndex((elem, i, arr) => {
+            const index = keys[lang].findIndex((elem, i, arr) => {
               let y;
               if (elem.code === el.dataset.keyCode) {
                 y = arr[i];
               } return y;
             });
-            allKeys[x].innerHTML = `${keys.enKeys[index].key}`;
+            allKeys[x].innerHTML = `${keys[lang][index].key}`;
           });
         }
         break;
       case 'ShiftLeft':
         if ((shiftLeft.classList.contains('active') || shiftRight.classList.contains('active')) && capsLock.classList.contains('active-capslock')) {
           allKeys.forEach((el, x) => {
-            const index = keys.enKeys.findIndex((elem, i, arr) => {
+            const index = keys[lang].findIndex((elem, i, arr) => {
               let y;
               if (elem.code === el.dataset.keyCode) {
                 y = arr[i];
               } return y;
             });
-            if (keys.enKeys[index].keyShift) { allKeys[x].innerHTML = keys.enKeys[index].keyShift.toString(); } else { allKeys[x].innerHTML = `${keys.enKeys[index].key}`; }
+            if (keys[lang][index].keyShift) { allKeys[x].innerHTML = keys[lang][index].keyShift.toString(); } else { allKeys[x].innerHTML = `${keys[lang][index].key}`; }
           });
         } else if (shiftLeft.classList.contains('active')) {
           allKeys.forEach((el, x) => {
-            const index = keys.enKeys.findIndex((elem, i, arr) => {
+            const index = keys[lang].findIndex((elem, i, arr) => {
               let y;
               if (elem.code === el.dataset.keyCode) {
                 y = arr[i];
               } return y;
             });
-            if (keys.enKeys[index].keyCapsLock) { allKeys[x].innerHTML = `${keys.enKeys[index].keyCapsLock}`; } else if (keys.enKeys[index].keyShift) { allKeys[x].innerHTML = keys.enKeys[index].keyShift.toString(); } else { allKeys[x].innerHTML = `${keys.enKeys[index].key}`; }
+            if (keys[lang][index].keyCapsLock) { allKeys[x].innerHTML = `${keys[lang][index].keyCapsLock}`; } else if (keys[lang][index].keyShift) { allKeys[x].innerHTML = keys[lang][index].keyShift.toString(); } else { allKeys[x].innerHTML = `${keys[lang][index].key}`; }
           });
         }
         break;
       case 'ShiftRight':
         if ((shiftLeft.classList.contains('active') || shiftRight.classList.contains('active')) && capsLock.classList.contains('active-capslock')) {
           allKeys.forEach((el, x) => {
-            const index = keys.enKeys.findIndex((elem, i, arr) => {
+            const index = keys[lang].findIndex((elem, i, arr) => {
               let y;
               if (elem.code === el.dataset.keyCode) {
                 y = arr[i];
               } return y;
             });
-            if (keys.enKeys[index].keyShift) { allKeys[x].innerHTML = keys.enKeys[index].keyShift.toString(); } else { allKeys[x].innerHTML = `${keys.enKeys[index].key}`; }
+            if (keys[lang][index].keyShift) { allKeys[x].innerHTML = keys[lang][index].keyShift.toString(); } else { allKeys[x].innerHTML = `${keys[lang][index].key}`; }
           });
         } else if (shiftRight.classList.contains('active')) {
           allKeys.forEach((el, x) => {
-            const index = keys.enKeys.findIndex((elem, i, arr) => {
+            const index = keys[lang].findIndex((elem, i, arr) => {
               let y;
               if (elem.code === el.dataset.keyCode) {
                 y = arr[i];
               } return y;
             });
-            if (keys.enKeys[index].keyCapsLock) { allKeys[x].innerHTML = `${keys.enKeys[index].keyCapsLock}`; } else if (keys.enKeys[index].keyShift) { allKeys[x].innerHTML = keys.enKeys[index].keyShift.toString(); } else { allKeys[x].innerHTML = `${keys.enKeys[index].key}`; }
+            if (keys[lang][index].keyCapsLock) { allKeys[x].innerHTML = `${keys[lang][index].keyCapsLock}`; } else if (keys[lang][index].keyShift) { allKeys[x].innerHTML = keys[lang][index].keyShift.toString(); } else { allKeys[x].innerHTML = `${keys[lang][index].key}`; }
           });
         }
         break;
@@ -158,10 +241,19 @@ function pressKeys(event) {
 }
 
 function removeShift(event) {
+  const description = document.querySelector('.description');
+  const currentLang = `${description.innerText.slice(-2)}`;
   const capsLock = document.querySelector('.caps-lock');
-  const shiftLeft = document.querySelector('.key[data-key-code=ShiftLeft');
-  const shiftRight = document.querySelector('.key[data-key-code=ShiftRight');
+  const shiftLeft = document.querySelector('.key[data-key-code=ShiftLeft]');
+  const shiftRight = document.querySelector('.key[data-key-code=ShiftRight]');
   const allKeys = document.querySelectorAll('.key');
+  let lang = '';
+
+  if (currentLang === 'EN') {
+    lang = 'enKeys';
+  } else if (currentLang === 'RU') {
+    lang = 'ruKeys';
+  }
 
   if (event.code) {
     keyCode = event.code;
@@ -172,23 +264,23 @@ function removeShift(event) {
   if (document.querySelector(`.key[data-key-code=${keyCode}]`) !== null) {
     if ((keyCode === 'ShiftLeft' && !shiftLeft.classList.contains('active') && !capsLock.classList.contains('active-capslock')) || (keyCode === 'ShiftRight' && !shiftRight.classList.contains('active') && !capsLock.classList.contains('active-capslock'))) {
       allKeys.forEach((el, x) => {
-        const index = keys.enKeys.findIndex((elem, i, arr) => {
+        const index = keys[lang].findIndex((elem, i, arr) => {
           let y;
           if (elem.code === el.dataset.keyCode) {
             y = arr[i];
           } return y;
         });
-        allKeys[x].innerHTML = `${keys.enKeys[index].key}`;
+        allKeys[x].innerHTML = `${keys[lang][index].key}`;
       });
     } else if ((keyCode === 'ShiftLeft' && !shiftLeft.classList.contains('active') && capsLock.classList.contains('active-capslock')) || (keyCode === 'ShiftRight' && !shiftRight.classList.contains('active') && capsLock.classList.contains('active-capslock'))) {
       allKeys.forEach((el, x) => {
-        const index = keys.enKeys.findIndex((elem, i, arr) => {
+        const index = keys[lang].findIndex((elem, i, arr) => {
           let y;
           if (elem.code === el.dataset.keyCode) {
             y = arr[i];
           } return y;
         });
-        if (keys.enKeys[index].keyCapsLock) { allKeys[x].innerHTML = `${keys.enKeys[index].keyCapsLock}`; } else { allKeys[x].innerHTML = `${keys.enKeys[index].key}`; }
+        if (keys[lang][index].keyCapsLock) { allKeys[x].innerHTML = `${keys[lang][index].keyCapsLock}`; } else { allKeys[x].innerHTML = `${keys[lang][index].key}`; }
       });
     }
   }
