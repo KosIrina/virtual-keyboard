@@ -4,10 +4,6 @@ export function highlightKeyByKeyboard(event) {
       document.querySelector(`.key[data-key-code=${event.code}]`).classList.toggle('active-capslock');
     }
     document.querySelector(`.key[data-key-code=${event.code}]`).classList.add('active');
-
-    if (event.code === 'CapsLock' && navigator.userAgent.includes('Mac OS X')) {
-      setTimeout(() => { document.querySelector(`.key[data-key-code=${event.code}]`).classList.remove('active'); }, 200);
-    }
   }
 }
 
@@ -21,15 +17,7 @@ export function highlightKeyByMouse(event) {
 }
 
 export function removeKeyHighlight(event) {
-  if (event.code === 'CapsLock' && navigator.userAgent.includes('Mac OS X')) {
-    if (document.querySelector(`.key[data-key-code=${event.code}]`) !== null) {
-      if (event.code === 'CapsLock') {
-        document.querySelector(`.key[data-key-code=${event.code}]`).classList.toggle('active-capslock');
-      }
-      document.querySelector(`.key[data-key-code=${event.code}]`).classList.add('active');
-      setTimeout(() => { document.querySelector(`.key[data-key-code=${event.code}]`).classList.remove('active'); }, 200);
-    }
-  } else if (event.code.length > 0 && document.querySelector(`.key[data-key-code=${event.code}]`) !== null) {
+  if (event.code.length > 0 && document.querySelector(`.key[data-key-code=${event.code}]`) !== null) {
     document.querySelector(`.key[data-key-code=${event.code}]`).classList.remove('active');
   } else if (event.target.dataset.keyCode) {
     document.querySelector(`.key[data-key-code=${event.target.dataset.keyCode}]`).classList.remove('active');
