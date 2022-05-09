@@ -18,6 +18,7 @@ export function highlightKeyByMouse(event) {
 
 export function removeKeyHighlight(event) {
   if (event.code) {
+    console.log(event.code.length);
     if (event.code.length > 0 && document.querySelector(`.key[data-key-code=${event.code}]`) !== null) {
       document.querySelector(`.key[data-key-code=${event.code}]`).classList.remove('active');
     }
